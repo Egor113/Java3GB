@@ -5,6 +5,7 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         writeFromConsole();
+        printFile();
     }
     public static void writeFromConsole() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -14,5 +15,18 @@ public class Main {
                 writer.write(line + "\n");
             }
         }
+    }
+
+    public static void printFile(){
+        try (BufferedReader reader = new BufferedReader( new
+                FileReader( "test.txt" ))) {
+            String str;
+            while ((str = reader.readLine()) != null ) {
+                System.out.println(str);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
