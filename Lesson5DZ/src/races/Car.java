@@ -1,5 +1,7 @@
 package races;
 
+import java.util.concurrent.BrokenBarrierException;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.Semaphore;
 
@@ -14,6 +16,7 @@ public class Car implements Runnable {
     private String name;
     private CyclicBarrier cbReady;
     private Semaphore semWin;
+    private CountDownLatch cdFinish;
 
     public String getName() {
         return name;
@@ -21,13 +24,14 @@ public class Car implements Runnable {
     public int getSpeed() {
         return speed;
     }
-    public Car(Race race, int speed, CyclicBarrier cbReady, Semaphore semWin) {
+    public Car(Race race, int speed, CyclicBarrier cbReady, Semaphore semWin, CountDownLatch cdFinish) {
         this.race = race;
         this.speed = speed;
         CARS_COUNT++;
         this.name = "Участник #" + CARS_COUNT;
         this.cbReady = cbReady;
         this.semWin = semWin;
+        this.cdFinish = cdFinish;
     }
     @Override
     public void run() {
@@ -49,9 +53,9 @@ public class Car implements Runnable {
                 win = false;
             }
             semWin.release();
+            cdFinish.countDown();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 }
