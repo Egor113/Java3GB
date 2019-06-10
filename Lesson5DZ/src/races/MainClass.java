@@ -11,8 +11,11 @@ public class MainClass {
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
         int barrier = CARS_COUNT + 1;
         CyclicBarrier cbReady = new CyclicBarrier(barrier);
+        //Барьер, необходимый для того, чтобы все машины стартовали одновременно
         Semaphore semWin = new Semaphore(1);
+        //Семафор для определения победителя в гонке
         CountDownLatch cdFinish = new CountDownLatch(CARS_COUNT);
+        //Счетчик для определения момента прихода к финишу последнего участника
 
         Race race = new Race(new Road(60), new Tunnel(CARS_COUNT), new Road(40));
         Car[] cars = new Car[CARS_COUNT];

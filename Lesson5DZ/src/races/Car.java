@@ -8,6 +8,7 @@ import java.util.concurrent.Semaphore;
 public class Car implements Runnable {
     private static int CARS_COUNT;
     private static boolean win = true;
+    //Флаг, отвечающий за приход победителя к финишу
     static {
         CARS_COUNT = 0;
     }

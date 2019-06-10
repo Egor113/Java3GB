@@ -4,6 +4,7 @@ import java.util.concurrent.Semaphore;
 
 public class Tunnel extends Stage {
     private Semaphore semWait;
+    //Семафор, ограничивающий максимальное число машин в туннеле
 
     public Tunnel(int carCount) {
         this.length = 80;
