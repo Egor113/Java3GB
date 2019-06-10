@@ -8,8 +8,8 @@ public class MainClass {
     public static final int CARS_COUNT = 4;
     public static void main(String[] args) {
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
-
-        CyclicBarrier cbReady = new CyclicBarrier(5);
+        int barrier = CARS_COUNT + 1;
+        CyclicBarrier cbReady = new CyclicBarrier(barrier);
         Semaphore semWin = new Semaphore(1);
 
         Race race = new Race(new Road(60), new Tunnel(CARS_COUNT), new Road(40));
