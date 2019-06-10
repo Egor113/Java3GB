@@ -12,7 +12,7 @@ public class MainClass {
         CyclicBarrier cbReady = new CyclicBarrier(5);
         Semaphore semWin = new Semaphore(1);
 
-        Race race = new Race(new Road(60), new Tunnel(), new Road(40));
+        Race race = new Race(new Road(60), new Tunnel(CARS_COUNT), new Road(40));
         Car[] cars = new Car[CARS_COUNT];
         for (int i = 0; i < cars.length; i++) {
             cars[i] = new Car(race, 20 + (int) (Math.random() * 10), cbReady, semWin);
