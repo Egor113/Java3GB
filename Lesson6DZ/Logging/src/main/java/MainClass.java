@@ -1,12 +1,17 @@
+import org.apache.log4j.Logger;
+
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.Semaphore;
 
 public class MainClass {
+    private static final Logger LOGGER = Logger.getLogger(MainClass.class);
+
     public static final int CARS_COUNT = 4;
     public static void main(String[] args) {
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
+        LOGGER.info("Preparation for the race");
         int barrier = CARS_COUNT + 1;
         CyclicBarrier cbReady = new CyclicBarrier(barrier);
         //Барьер, необходимый для того, чтобы все машины стартовали одновременно
