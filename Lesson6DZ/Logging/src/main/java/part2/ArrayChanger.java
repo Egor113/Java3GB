@@ -21,6 +21,12 @@ public class ArrayChanger {
                 indexes.add(i);
             }
         }
+        if (indexes.isEmpty()){
+            throw new RuntimeException("Нет четверок");
+        }
+        else if(indexes.get(indexes.size()-1) == arr.length-1){
+            throw new RuntimeException("После последней четверки нет символов");
+        }
         int destArrSize = arr.length - indexes.get(indexes.size()-1)-1;
         int[] destArr = new int[destArrSize];
         System.arraycopy(arr,indexes.get(indexes.size()-1)+1,destArr,0,destArrSize);
