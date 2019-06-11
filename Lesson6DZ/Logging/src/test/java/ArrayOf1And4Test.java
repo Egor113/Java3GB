@@ -21,4 +21,14 @@ public class ArrayOf1And4Test {
     public void test2() {
         Assert.assertEquals(array.checkArray(new int[]{1,2,3}),false);
     }
+
+    @Test
+    public void test3() {
+        Assert.assertEquals(array.checkArray(new int[]{2,3,4}),false);
+    }
+
+    @Test
+    public void test4() {
+        Assert.assertEquals(array.checkArray(new int[]{1,1,1,4,4,4,4}),true);
+    }
 }
