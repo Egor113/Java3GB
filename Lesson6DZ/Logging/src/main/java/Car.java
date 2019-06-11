@@ -36,8 +36,10 @@ public class Car implements Runnable {
     public void run() {
         try {
             System.out.println(this.name + " готовится");
+            MainClass.LOGGER.info(this.name + " готовится");
             Thread.sleep(500 + (int)(Math.random() * 800));
             System.out.println(this.name + " готов");
+            MainClass.LOGGER.info(this.name + " готов");
             cbReady.await();
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,6 +51,7 @@ public class Car implements Runnable {
             semWin.acquire();
             if (win){
                 System.out.println(this.name + " - WIN");
+                MainClass.LOGGER.info(this.name + " - WIN");
                 win = false;
             }
             semWin.release();

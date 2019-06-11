@@ -6,12 +6,11 @@ import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.Semaphore;
 
 public class MainClass {
-    private static final Logger LOGGER = Logger.getLogger(MainClass.class);
-
+    public static final Logger LOGGER = Logger.getLogger(MainClass.class);
     public static final int CARS_COUNT = 4;
     public static void main(String[] args) {
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
-        LOGGER.info("Preparation for the race");
+        LOGGER.info("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
         int barrier = CARS_COUNT + 1;
         CyclicBarrier cbReady = new CyclicBarrier(barrier);
         //Барьер, необходимый для того, чтобы все машины стартовали одновременно
@@ -36,11 +35,13 @@ public class MainClass {
             e.printStackTrace();
         }
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
+        LOGGER.info("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка началась!!!");
         try {
             cdFinish.await();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
+        LOGGER.info("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Гонка закончилась!!!");
     }
 }
