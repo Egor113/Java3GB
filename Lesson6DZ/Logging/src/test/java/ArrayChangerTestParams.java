@@ -1,3 +1,4 @@
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -47,6 +48,11 @@ public class ArrayChangerTestParams {
     @Test(expected = RuntimeException.class)
     public void changeArrayException(){
         Assert.assertArrayEquals(changer.changeArray(arrExcept),res);
+    }
+
+    @After
+    public void closeObject(){
+        changer = null;
     }
 
 }

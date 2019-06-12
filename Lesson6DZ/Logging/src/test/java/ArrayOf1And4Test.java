@@ -1,3 +1,4 @@
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -31,4 +32,5 @@ public class ArrayOf1And4Test {
     public void test4() {
         Assert.assertEquals(array.checkArray(new int[]{1,1,1,4,4,4,4}),true);
     }
+
 }
