@@ -1,4 +1,6 @@
 package part3;
 
-public class Fruit {
+public abstract class Fruit {
+    protected int name;
+    protected double weight;
 }
