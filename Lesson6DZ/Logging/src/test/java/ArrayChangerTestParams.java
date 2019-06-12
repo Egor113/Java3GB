@@ -10,14 +10,14 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @RunWith(value = Parameterized.class)
-public class ArrayChangerTest {
+public class ArrayChangerTestParams {
     private static ArrayChanger changer = null;
     private int[] res;
 
     private int[] arrNormal;
     private int[] arrExcept;
 
-    public ArrayChangerTest(int[] arrNormal, int[] arrExcept, int[] res) {
+    public ArrayChangerTestParams(int[] arrNormal, int[] arrExcept, int[] res) {
         this.arrNormal = arrNormal;
         this.arrExcept = arrExcept;
         this.res = res;

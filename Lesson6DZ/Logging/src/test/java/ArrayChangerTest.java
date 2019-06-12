@@ -5,7 +5,7 @@ import part2.ArrayChanger;
 
 import java.util.Arrays;
 
-public class ArrayChangerTest2 {
+public class ArrayChangerTest {
     private static ArrayChanger changer;
 
     @BeforeClass
