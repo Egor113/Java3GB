@@ -12,7 +12,7 @@ public class MainDB {
             conn = DriverManager.getConnection("jdbc:postgresql://localhost/chat");
             stmt = conn.createStatement();
 
-            stmt.execute("insert into users(name,password,nick) values('egor',1234,'egor')");
+            stmt.execute("insert into users(name,password,nick) values('egor',12345,'egor')");
             ResultSet rs = stmt.executeQuery("select * from users");
             while (rs.next()) {
                 System.out.println(rs.getInt("id") + " : " + rs.getString("name"));

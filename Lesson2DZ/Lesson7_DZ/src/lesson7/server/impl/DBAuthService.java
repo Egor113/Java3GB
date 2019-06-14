@@ -23,15 +23,19 @@ public class DBAuthService implements AuthService {
             Class.forName("org.postgresql.Driver");
             conn = DriverManager.getConnection("jdbc:postgresql://localhost/chat");
             stmt = conn.createStatement();
-            //stmt.execute("DELETE FROM Students");
-            String sqlRead = "SELECT * FROM Students";
-            ResultSet rs = stmt.executeQuery(sqlRead);
+
+            ResultSet rs = stmt.executeQuery("select * from users");
             while (rs.next()) {
-                System.out.print(rs.getString("Name") + ": " + rs.getInt("Score") + "\n");
+                if (rs.getString("name").equals(login) && rs.getString("password").equals(pass)){
+                    return new Client(rs.getString("name"),rs.getString("password"),rs.getString("nick"));
+                }
             }
-        } catch (ClassNotFoundException | SQLException e) {
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return new Client(login,pass,"sss");
+        return null;
     }
 }
