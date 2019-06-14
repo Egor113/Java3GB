@@ -54,7 +54,7 @@
                <PasswordField fx:id="passSignUpField" layoutX="76.0" layoutY="54.0" promptText="password" AnchorPane.leftAnchor="76.0" AnchorPane.rightAnchor="75.0" />
                <BorderPane layoutY="79.0" prefHeight="53.0" prefWidth="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                   <center>
-                     <Button fx:id="CreateUserBtn" mnemonicParsing="false" onAction="#createUser" text="Sign in" BorderPane.alignment="CENTER" />
+                     <Button fx:id="CreateUserBtn" mnemonicParsing="false" onAction="#createUser" text="Sign up" BorderPane.alignment="CENTER" />
                   </center>
                </BorderPane>
             </children>
