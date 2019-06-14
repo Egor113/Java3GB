@@ -8,11 +8,13 @@ import lesson7.server.task.AuthenticationTask;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Server {
+    public static Connection conn = null;
 
     private List<ClientHandler> clients = Collections.synchronizedList(new ArrayList<>());
 
@@ -23,7 +25,7 @@ public class Server {
 
             server = new ServerSocket(8090);
             System.out.println("server start");
-
+            connectDB();
             while (true) {
                 socket = server.accept();
                 System.out.println("client connected");
@@ -47,6 +49,18 @@ public class Server {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    private void connectDB() {
+        try {
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost/chat");
+        }
+        catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

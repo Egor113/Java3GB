@@ -43,4 +43,10 @@ public class CsvAuthService implements AuthService {
                 .filter(user -> user.getLogin().equals(login) && user.getPass().equals(pass))
                 .findFirst().orElse(null);
     }
+
+    @Override
+    public boolean signUp(String login, String pass) {
+        return false;
+    }
+
 }

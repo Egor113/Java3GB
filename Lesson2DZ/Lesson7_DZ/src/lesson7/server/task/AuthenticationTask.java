@@ -44,6 +44,16 @@ public class AuthenticationTask extends Thread {
                         out.writeUTF("/auth_failed");
                     }
                 }
+                else if(line.startsWith("/signUp")){
+                    String[] creds = line.split(" ");
+                    if (authService.signUp(creds[1], creds[2])){
+                        out.writeUTF("/signUp_success");
+                        break;
+                    }
+                    else {
+                        out.writeUTF("/signUp_failed");
+                    }
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();

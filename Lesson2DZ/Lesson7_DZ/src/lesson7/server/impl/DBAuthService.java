@@ -1,5 +1,6 @@
 package lesson7.server.impl;
 
+import lesson7.server.Server;
 import lesson7.server.api.AuthService;
 import lesson7.server.model.Client;
 
@@ -16,13 +17,9 @@ public class DBAuthService implements AuthService {
 
     @Override
     public Client authenticate(String login, String pass) {
-        Connection conn = null;
-        PreparedStatement ps = null;
         Statement stmt = null;
         try {
-            Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost/chat");
-            stmt = conn.createStatement();
+            stmt = Server.conn.createStatement();
 
             ResultSet rs = stmt.executeQuery("select * from users");
             while (rs.next()) {
@@ -33,9 +30,22 @@ public class DBAuthService implements AuthService {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public boolean signUp(String login, String pass) {
+        Statement stmt = null;
+        try {
+            stmt = Server.conn.createStatement();
+            String request = "insert into users(name,password,nick) values('" + login + "','" + pass + "','" + login + "')";
+            stmt.execute(request);
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

@@ -26,6 +26,14 @@ public class Controller{
     public TextField loginField;
     public PasswordField passField;
     public Button loginBtn;
+    public Button signUpBtn;
+
+    public GridPane signUpPane;
+    public TextField signUpField;
+    public PasswordField passSignUpField;
+    public Button CreateUserBtn;
+
+
 
     private final String HOST = "localhost";
     private final int PORT = 8090;
@@ -73,6 +81,12 @@ public class Controller{
 //                            alert();
                             System.out.println("auth failed: " + message);
                         }
+                        if (message.startsWith("/signUp_success")){
+                            showSignInPage(true);
+                        }
+                        if (message.startsWith("/signUp_failed")){
+                            System.out.println("signUp failed: " + message);
+                        }
                     }
 
                     while (true) {
@@ -99,12 +113,41 @@ public class Controller{
         }
     }
 
+    private void showSignInPage(boolean signUpSuccess) {
+        signUpPane.setVisible(!signUpSuccess);
+        signUpPane.setManaged(!signUpSuccess);
+
+        loginPane.setVisible(signUpSuccess);
+        loginPane.setManaged(signUpSuccess);
+    }
+
     private void authenticate(boolean auth) {
         loginPane.setVisible(!auth);
         loginPane.setManaged(!auth);
 
         chatPane.setVisible(auth);
         chatPane.setManaged(auth);
+    }
+
+    public void openSignUpForm(ActionEvent actionEvent) {
+        loginPane.setVisible(false);
+        loginPane.setManaged(false);
+
+        signUpPane.setVisible(true);
+        signUpPane.setManaged(true);
+    }
+
+    public void createUser(ActionEvent actionEvent) {
+        if (socket == null || socket.isClosed()){
+            initSocket();
+        }
+        try {
+            out.writeUTF("/signUp " + signUpField.getText() + " " + passSignUpField.getText());
+            loginField.clear();
+            passField.clear();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 //    private void alert(){
