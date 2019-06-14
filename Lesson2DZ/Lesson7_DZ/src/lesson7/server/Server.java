@@ -27,7 +27,7 @@ public class Server {
             while (true) {
                 socket = server.accept();
                 System.out.println("client connected");
-                new AuthenticationTask(socket, this, new DBAuthService()).start();
+                new AuthenticationTask(socket, this, new CsvAuthService()).start();
             }
 
         } catch (IOException e) {
