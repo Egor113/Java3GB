@@ -8,13 +8,13 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 
-public @interface Test
+public @interface TestAnnotation
 {
-    boolean test();
+    boolean test() default false;
 
-    boolean beforeSuite();
+    boolean beforeSuite() default false;
 
-    boolean 
+    boolean afterSuite() default false;
 
-
+    int priority() default 1;
 }
